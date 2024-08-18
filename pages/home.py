@@ -28,11 +28,11 @@ class CounterState:
 counter_state = CounterState()
 
 
-def HomePage(app, _):
+def HomePage(app, rt):
 
     # Registers the routes
-    app.post("/increment")(counter_state.increment)
-    app.post("/reset")(counter_state.reset)
+    counter_state.increment = rt(counter_state.increment)
+    counter_state.reset = rt(counter_state.reset)
 
     return TWHtml(
         Div(
@@ -50,13 +50,13 @@ def HomePage(app, _):
                                 Div(
                                     TWButton(
                                         PlusIcon(cls="bg-white w-5 h-5"),
-                                        hx_post="/increment",
+                                        hx_post=counter_state.increment(),
                                         hx_target="#count",
                                         hx_swap="textContent",
                                     ),
                                     TWButton(
                                         RotateCCW(cls="bg-white w-5 h-5"),
-                                        hx_post="/reset",
+                                        hx_post=counter_state.reset(),
                                         hx_target="#count",
                                         hx_swap="textContent",
                                     ),
