@@ -4,3 +4,13 @@
 # fasthtml-tailwind
 
 A POC for making UI Components with Tailwind in fasthtml
+
+# How to run the server
+
+```
+pip install python_fasthtml
+```
+
+```
+python main.py
+```
